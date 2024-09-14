@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  database:
+    container_name: postgresql
+    image: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: quiz
+    ports:
+      - "5432:5432"
+    networks:
+      - quiz_network
+
+networks:
+  quiz_network:
+volumes:
+  db-data:
