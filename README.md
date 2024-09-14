@@ -5,7 +5,7 @@
 ## Features
 - Course registration and login
 - Lesson and quiz creation
-- Multiple question types (e.g., multiple-choice, short answer)
+- Multiple question types (e.g., multiple-choice, short answer, open-ended, picture-based)
 - Automatic grading of quizzes
 - Immediate feedback displayed on-screen and sent via email
 - RESTful API structure with Spring Boot
