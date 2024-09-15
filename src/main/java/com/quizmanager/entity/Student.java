@@ -29,4 +29,3 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     Set<Result> results;
 }
-

@@ -19,6 +19,7 @@ public class Academy {
 
     String name;
     String email;
+    String logo;
 
     @OneToMany(mappedBy = "academy", cascade = CascadeType.ALL)
     Set<Course> courses;

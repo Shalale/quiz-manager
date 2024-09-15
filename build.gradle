@@ -31,8 +31,11 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core:4.0.0'
 
     implementation 'org.modelmapper:modelmapper:3.2.1'
+    implementation 'org.hibernate:hibernate-validator:9.0.0.Beta3'
+
 }
 
 tasks.named('test') {
