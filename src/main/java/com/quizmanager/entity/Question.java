@@ -17,13 +17,12 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-
     @ManyToOne
     @JoinColumn(name = "exam_id")
     Exam exam;
 
     String type;  // "multiple-choice", "open-ended", "picture"
-    String content;
+    String questionText;
     String pictureUrl;  // For picture-based questions
 
     @ElementCollection

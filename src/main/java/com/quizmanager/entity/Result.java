@@ -56,4 +56,6 @@ public class Result {
 
     @ElementCollection
     Map<Long, String> studentAnswers; // Question ID -> Student's answer
+
+    String additionalNotes;
 }
