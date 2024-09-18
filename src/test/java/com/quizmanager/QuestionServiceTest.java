@@ -76,7 +76,7 @@ public class QuestionServiceTest {
         when(questionRepository.save(question)).thenReturn(savedQuestion);
         when(modelMapper.map(savedQuestion, QuestionResponse.class)).thenReturn(expectedResponse);
 
-        QuestionResponse actualResponse = questionService.createQuestion(request);
+        QuestionResponse actualResponse = questionService.create(request);
 
         assertNotNull(actualResponse);
         assertEquals(expectedResponse, actualResponse);
@@ -97,7 +97,7 @@ public class QuestionServiceTest {
         when(questionRepository.save(question)).thenReturn(savedQuestion);
         when(modelMapper.map(savedQuestion, QuestionResponse.class)).thenReturn(expectedResponse);
 
-        QuestionResponse actualResponse = questionService.updateQuestion(updateRequest);
+        QuestionResponse actualResponse = questionService.update(updateRequest);
 
         assertNotNull(actualResponse);
         assertEquals(expectedResponse, actualResponse);
@@ -114,7 +114,7 @@ public class QuestionServiceTest {
         when(questionRepository.findById(updateRequest.getId())).thenReturn(Optional.empty());
 
         RuntimeException exception = assertThrows(RuntimeException.class, () ->
-                questionService.updateQuestion(updateRequest)
+                questionService.update(updateRequest)
         );
 
         assertEquals("Question not found with id: " + updateRequest.getId(), exception.getMessage());
@@ -128,7 +128,7 @@ public class QuestionServiceTest {
 
         when(questionRepository.findById(questionId)).thenReturn(Optional.of(new Question()));
 
-        questionService.deleteQuestion(questionId);
+        questionService.delete(questionId);
 
         verify(questionRepository, times(1)).findById(questionId);
         verify(questionRepository, times(1)).deleteById(questionId);
@@ -141,7 +141,7 @@ public class QuestionServiceTest {
         when(questionRepository.findById(questionId)).thenReturn(Optional.empty());
 
         RuntimeException exception = assertThrows(RuntimeException.class, () ->
-                questionService.deleteQuestion(questionId)
+                questionService.delete(questionId)
         );
 
         assertEquals("Question not found with id: " + questionId, exception.getMessage());

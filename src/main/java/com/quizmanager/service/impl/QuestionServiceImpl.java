@@ -6,6 +6,7 @@ import com.quizmanager.dto.QuestionUpdateRequest;
 import com.quizmanager.entity.Question;
 import com.quizmanager.repository.QuestionRepository;
 import com.quizmanager.service.QuestionService;
+import com.quizmanager.utill.RepositoryUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
@@ -16,14 +17,13 @@ import static com.quizmanager.utill.UpdateHelper.getNullPropertyNames;
 
 @Service
 @RequiredArgsConstructor
-@RequestMapping("/question")
 public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
     private final ModelMapper mapper;
 
     @Override
     public QuestionResponse getQuestionById(Long questionId) {
-        Question question = fetchById(questionId);
+        Question question = RepositoryUtil.fetchById(questionRepository, questionId);
         return mapper.map(question, QuestionResponse.class);
     }
 
@@ -35,28 +35,21 @@ public class QuestionServiceImpl implements QuestionService {
                 .toList();
     }
 
-    public QuestionResponse createQuestion(QuestionRequest request) {
+    public QuestionResponse create(QuestionRequest request) {
         Question question = mapper.map(request, Question.class);
         Question savedQuestion = questionRepository.save(question);
         return mapper.map(savedQuestion, QuestionResponse.class);
     }
 
-    public QuestionResponse updateQuestion(QuestionUpdateRequest request) {
-        Question question = fetchById(request.getId());
+    public QuestionResponse update(QuestionUpdateRequest request) {
+        Question question = RepositoryUtil.fetchById(questionRepository, request.getId());
         BeanUtils.copyProperties(request, question, getNullPropertyNames(request));
         Question savedQuestion = questionRepository.save(question);
         return mapper.map(savedQuestion, QuestionResponse.class);
     }
 
-    public void deleteQuestion(Long questionId) {
-        fetchById(questionId);
+    public void delete(Long questionId) {
+        RepositoryUtil.fetchById(questionRepository, questionId);
         questionRepository.deleteById(questionId);
-    }
-
-
-    private Question fetchById(Long questionId){
-        return questionRepository.findById(questionId).orElseThrow(
-                () -> new RuntimeException("Question not found with id: " + questionId)
-        );
     }
 }

@@ -32,4 +32,7 @@ public class Exam {
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<Question> questions;
+
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.PERSIST)
+    Set<Student> students;
 }

@@ -28,4 +28,8 @@ public class Student {
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     Set<Result> results;
+
+    @ManyToOne
+    @JoinColumn(name = "exam_id")
+    Exam exam;
 }

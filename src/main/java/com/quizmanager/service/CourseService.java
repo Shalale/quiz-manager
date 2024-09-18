@@ -2,15 +2,18 @@ package com.quizmanager.service;
 
 import com.quizmanager.dto.CourseRequest;
 import com.quizmanager.dto.CourseResponse;
+import com.quizmanager.dto.CourseUpdateRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface CourseService {
-    CourseResponse addCourse(CourseRequest course);
+    CourseResponse create(CourseRequest course);
 
-    CourseResponse updateCourse(CourseRequest course);
+    CourseResponse update(CourseUpdateRequest course);
 
-    void deleteCourse(Long courseId);
+    void delete(Long courseId);
 
     CourseResponse getCourseById(Long courseId);
 
-    CourseResponse getAllCourses();
+    Page<CourseResponse> getAllCourses(Pageable pageable);
 }

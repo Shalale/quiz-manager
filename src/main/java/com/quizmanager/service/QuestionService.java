@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface QuestionService {
     QuestionResponse getQuestionById(Long questionId);
-    QuestionResponse createQuestion(QuestionRequest questionRequest);
-    QuestionResponse updateQuestion(QuestionUpdateRequest questionRequest);
-    void deleteQuestion(Long questionId);
     List<QuestionResponse> getAllByExamId(Long examId);
+    QuestionResponse create(QuestionRequest questionRequest);
+    QuestionResponse update(QuestionUpdateRequest questionRequest);
+    void delete(Long questionId);
 }
