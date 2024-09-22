@@ -9,9 +9,11 @@ import com.quizmanager.utill.RepositoryUtil;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Data
+@Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository repository;

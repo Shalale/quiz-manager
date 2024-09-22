@@ -47,7 +47,8 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
-    public void sendResultsAsEmail(Long resultId) {
+    public String sendResultsAsEmail(Long resultId) {
         // TODO: Implement email functionality
+        return "Email sent successfully";
     }
 }

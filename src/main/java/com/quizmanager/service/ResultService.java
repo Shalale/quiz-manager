@@ -12,5 +12,5 @@ public interface ResultService {
     Page<ResultResponse> getResultsByExamId(Long examId, Pageable pageable);
 
     List<ResultResponse> getResultsByStudentId(Long userId);
-    void sendResultsAsEmail(Long resultId);
+    String sendResultsAsEmail(Long resultId);
 }
