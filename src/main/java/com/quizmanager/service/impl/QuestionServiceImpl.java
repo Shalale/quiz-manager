@@ -23,17 +23,17 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public QuestionResponse getQuestionById(Long questionId) {
-        Question question = RepositoryUtil.fetchById(questionRepository, questionId);
+        Question question = RepositoryUtil.fetchById(questionRepository, questionId, "Question");
         return mapper.map(question, QuestionResponse.class);
     }
 
-    @Override
-    public List<QuestionResponse> getAllByExamId(Long examId) {
-        List<Question> questions = questionRepository.getAllByExamId(examId);
-        return questions.stream().map(
-                question -> mapper.map(question, QuestionResponse.class))
-                .toList();
-    }
+//    @Override
+//    public List<QuestionResponse> getAllByExamId(Long examId) {
+//        List<Question> questions = questionRepository.getAllByExamId(examId);
+//        return questions.stream().map(
+//                question -> mapper.map(question, QuestionResponse.class))
+//                .toList();
+//    }
 
     public QuestionResponse create(QuestionRequest request) {
         Question question = mapper.map(request, Question.class);
@@ -42,14 +42,14 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     public QuestionResponse update(QuestionUpdateRequest request) {
-        Question question = RepositoryUtil.fetchById(questionRepository, request.getId());
+        Question question = RepositoryUtil.fetchById(questionRepository, request.getId(), "Question");
         BeanUtils.copyProperties(request, question, getNullPropertyNames(request));
         Question savedQuestion = questionRepository.save(question);
         return mapper.map(savedQuestion, QuestionResponse.class);
     }
 
     public void delete(Long questionId) {
-        RepositoryUtil.fetchById(questionRepository, questionId);
+        RepositoryUtil.fetchById(questionRepository, questionId, "Question");
         questionRepository.deleteById(questionId);
     }
 }

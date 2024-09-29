@@ -29,12 +29,8 @@ public class ResultServiceImpl implements ResultService {
     }
     @Override
     public Page<ResultResponse> getResultsByExamId(Long examId, Pageable pageable) {
-        Page<Result> results = resultRepository.findAllByExamId(examId, pageable);
-        List<ResultResponse> responses = results.stream()
-                .map(
-                        result -> mapper.map(result, ResultResponse.class))
-                .toList();
-        return new PageImpl<>(responses, pageable, results.getTotalElements());
+        Page<Result> resultsPage = resultRepository.findAllByExamId(examId, pageable);
+       return resultsPage.map(result -> mapper.map(result, ResultResponse.class));
     }
 
     @Override
@@ -48,7 +44,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public String sendResultsAsEmail(Long resultId) {
-        // TODO: Implement email functionality
+        // TODO: Implement sendmail functionality with kafka
         return "Email sent successfully";
     }
 }

@@ -1,10 +1,12 @@
 package com.quizmanager.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import java.util.Set;
+
+import java.util.*;
 
 @Entity
 @Data
@@ -27,9 +29,27 @@ public class Student {
     String email;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonIgnore
     Set<Result> results;
 
-    @ManyToOne
-    @JoinColumn(name = "exam_id")
-    Exam exam;
+    @ManyToMany
+    @JoinTable(
+            name = "exam_students",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "exam_id")
+    )
+    private List<Exam> exams = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && Objects.equals(email, student.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, email);
+    }
 }

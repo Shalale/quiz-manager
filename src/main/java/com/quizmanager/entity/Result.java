@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -58,4 +59,17 @@ public class Result {
     Map<Long, String> studentAnswers; // Question ID -> Student's answer
 
     String additionalNotes;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Result result = (Result) o;
+        return Objects.equals(id, result.id) && Objects.equals(student, result.student) && Objects.equals(score, result.score) && Objects.equals(percentage, result.percentage) && Objects.equals(passed, result.passed) && Objects.equals(correctAnswers, result.correctAnswers) && Objects.equals(incorrectAnswers, result.incorrectAnswers) && Objects.equals(submittedAt, result.submittedAt) && Objects.equals(duration, result.duration) && Objects.equals(additionalNotes, result.additionalNotes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, student, score, percentage, passed, correctAnswers, incorrectAnswers, submittedAt, duration, additionalNotes);
+    }
 }

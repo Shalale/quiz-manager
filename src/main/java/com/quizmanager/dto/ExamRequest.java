@@ -3,6 +3,7 @@ package com.quizmanager.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -15,5 +16,6 @@ public class ExamRequest {
     String instructions;
     Integer duration;
     Long courseId;
-    Set<QuestionRequest> questions;
+    List<QuestionRequest> questions;
+    List<StudentRequest> students;
 }

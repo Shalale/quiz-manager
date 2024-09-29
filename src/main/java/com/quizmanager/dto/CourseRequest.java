@@ -11,5 +11,5 @@ import lombok.experimental.FieldDefaults;
 public class CourseRequest {
     String name;
     String instructor;
-    Long academyId;
+    Long academyId  ;
 }

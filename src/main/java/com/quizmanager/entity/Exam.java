@@ -1,11 +1,13 @@
 package com.quizmanager.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -26,13 +28,25 @@ public class Exam {
 
     Integer duration;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     Course course;
 
-    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     Set<Question> questions;
 
-    @OneToMany(mappedBy = "exam", cascade = CascadeType.PERSIST)
-    Set<Student> students;
+    @ManyToMany(mappedBy = "exams") // Referencing the field in Student
+    private List<Student> students = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exam exam = (Exam) o;
+        return Objects.equals(id, exam.id) && Objects.equals(title, exam.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title);
+    }
 }

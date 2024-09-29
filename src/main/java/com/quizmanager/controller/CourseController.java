@@ -30,7 +30,7 @@ public class CourseController {
         return courseService.getCourseById(courseId);
     }
 
-    @GetMapping()
+    @GetMapping()//@Todo: Add search functionality
     public Page<CourseResponse> getAllCourses(@RequestParam(required = false) String search, Pageable pageable) {
         return courseService.getAllCourses(pageable);
     }

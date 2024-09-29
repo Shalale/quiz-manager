@@ -15,5 +15,5 @@ public class CourseResponse {
     String name;
     String instructor;
     Long academyId;
-    Set<Long> examIds;
+    Set<ExamResponse> exams;
 }

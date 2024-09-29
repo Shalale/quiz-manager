@@ -15,7 +15,7 @@ import java.util.List;
 public class QuestionController {
     private final QuestionService questionService;
 
-    @PostMapping()
+    @PostMapping("/create")
     public QuestionResponse create(@RequestBody QuestionRequest questionRequest) {
         return questionService.create(questionRequest);
     }
@@ -25,10 +25,10 @@ public class QuestionController {
         return questionService.getQuestionById(questionId);
     }
 
-    @GetMapping("/exam/{examId}")
-    public List<QuestionResponse> getAllByExamId(@PathVariable Long examId) {
-        return questionService.getAllByExamId(examId);
-    }
+//    @GetMapping("/exam/{examId}")
+//    public List<QuestionResponse> getAllByExamId(@PathVariable Long examId) {
+//        return questionService.getAllByExamId(examId);
+//    }
 
     @PutMapping("/update")
     public QuestionResponse update(@RequestBody QuestionUpdateRequest questionRequest) {
