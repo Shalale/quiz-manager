@@ -1,8 +1,5 @@
 package com.quizmanager.dto;
 
-import com.quizmanager.entity.Exam;
-import com.quizmanager.entity.Student;
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

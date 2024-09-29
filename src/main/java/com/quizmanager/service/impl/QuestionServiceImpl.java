@@ -3,7 +3,9 @@ package com.quizmanager.service.impl;
 import com.quizmanager.dto.QuestionRequest;
 import com.quizmanager.dto.QuestionResponse;
 import com.quizmanager.dto.QuestionUpdateRequest;
+import com.quizmanager.entity.Exam;
 import com.quizmanager.entity.Question;
+import com.quizmanager.repository.ExamRepository;
 import com.quizmanager.repository.QuestionRepository;
 import com.quizmanager.service.QuestionService;
 import com.quizmanager.utill.RepositoryUtil;
@@ -11,14 +13,14 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import java.util.List;
+
 import static com.quizmanager.utill.UpdateHelper.getNullPropertyNames;
 
 @Service
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
+    private final ExamRepository examRepository;
     private final ModelMapper mapper;
 
     @Override
@@ -27,13 +29,14 @@ public class QuestionServiceImpl implements QuestionService {
         return mapper.map(question, QuestionResponse.class);
     }
 
-//    @Override
-//    public List<QuestionResponse> getAllByExamId(Long examId) {
-//        List<Question> questions = questionRepository.getAllByExamId(examId);
-//        return questions.stream().map(
-//                question -> mapper.map(question, QuestionResponse.class))
-//                .toList();
-//    }
+    @Override
+    public List<QuestionResponse> getAllByExamId(Long examId) {
+        Exam exam = RepositoryUtil.fetchById(examRepository, examId, "Exam");
+        List<Question> questions = questionRepository.getAllByExamId(examId);
+        return questions.stream().map(
+                question -> mapper.map(question, QuestionResponse.class))
+                .toList();
+    }
 
     public QuestionResponse create(QuestionRequest request) {
         Question question = mapper.map(request, Question.class);

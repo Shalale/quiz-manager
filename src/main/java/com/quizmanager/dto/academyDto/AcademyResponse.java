@@ -1,9 +1,6 @@
 package com.quizmanager.dto.academyDto;
 
 import com.quizmanager.dto.CourseResponse;
-import com.quizmanager.entity.Course;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

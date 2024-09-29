@@ -1,13 +1,11 @@
 package com.quizmanager.entity;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Data

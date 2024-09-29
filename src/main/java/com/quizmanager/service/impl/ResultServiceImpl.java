@@ -5,11 +5,9 @@ import com.quizmanager.dto.ResultResponse;
 import com.quizmanager.entity.Result;
 import com.quizmanager.repository.ResultRepository;
 import com.quizmanager.service.ResultService;
-import com.quizmanager.utill.RepositoryUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

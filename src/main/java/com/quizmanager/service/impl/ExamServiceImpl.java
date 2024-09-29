@@ -7,7 +7,6 @@ import com.quizmanager.dto.StudentRequest;
 import com.quizmanager.entity.Course;
 import com.quizmanager.entity.Exam;
 import com.quizmanager.entity.Student;
-import com.quizmanager.exception.DuplicateEntryException;
 import com.quizmanager.repository.CourseRepository;
 import com.quizmanager.repository.ExamRepository;
 import com.quizmanager.repository.StudentRepository;
@@ -17,16 +16,14 @@ import com.quizmanager.utill.UpdateHelper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service

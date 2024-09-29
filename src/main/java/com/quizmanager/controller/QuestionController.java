@@ -7,8 +7,6 @@ import com.quizmanager.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/questions")
@@ -25,10 +23,10 @@ public class QuestionController {
         return questionService.getQuestionById(questionId);
     }
 
-//    @GetMapping("/exam/{examId}")
-//    public List<QuestionResponse> getAllByExamId(@PathVariable Long examId) {
-//        return questionService.getAllByExamId(examId);
-//    }
+    @GetMapping("/exam/{examId}")
+    public List<QuestionResponse> getAllByExamId(@PathVariable Long examId) {
+        return questionService.getAllByExamId(examId);
+    }
 
     @PutMapping("/update")
     public QuestionResponse update(@RequestBody QuestionUpdateRequest questionRequest) {

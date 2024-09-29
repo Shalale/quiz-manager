@@ -30,12 +30,12 @@ public class ExamController {
     }
 
     @GetMapping()//@Todo: Add search functionality
-    public Page<ExamResponse> getAll(@PageableDefault(size = 10) Pageable pageable) {
+    public Page<ExamResponse> getAll(@PageableDefault() Pageable pageable) {
         return examService.getAll(pageable);
     }
 
     @GetMapping("/course/{id}")
-    public Page<ExamResponse> getAllByCourse(@PathVariable Long id, @PageableDefault(size = 10) Pageable pageable) {
+    public Page<ExamResponse> getAllByCourse(@PathVariable Long id, @PageableDefault() Pageable pageable) {
         return examService.getAllByCourse(id, pageable);
     }
 

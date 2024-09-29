@@ -28,7 +28,7 @@ public class StudentController {
     }
 
     @GetMapping()
-    public Page<StudentResponse> getAllStudents(@PageableDefault(size = 10) Pageable pageable) {
+    public Page<StudentResponse> getAllStudents(@PageableDefault() Pageable pageable) {
         return studentService.getAllStudents(pageable);
     }
 
