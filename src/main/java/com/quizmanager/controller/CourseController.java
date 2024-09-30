@@ -1,5 +1,6 @@
 package com.quizmanager.controller;
 
+import com.quizmanager.dto.CourseFilter;
 import com.quizmanager.dto.CourseRequest;
 import com.quizmanager.dto.CourseResponse;
 import com.quizmanager.dto.CourseUpdateRequest;
@@ -7,6 +8,7 @@ import com.quizmanager.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,8 +33,15 @@ public class CourseController {
     }
 
     @GetMapping()//@Todo: Add search functionality
-    public Page<CourseResponse> getAllCourses(@RequestParam(required = false) String search, Pageable pageable) {
-        return courseService.getAllCourses(pageable);
+    public Page<CourseResponse> getAllCourses(@RequestParam(required = false) String searchTerm,
+                                              @PageableDefault Pageable pageable) {
+        return courseService.searchCourses(searchTerm, pageable);
+    }
+
+    @GetMapping("/filter")
+    public Page<CourseResponse> getFilteredCourses(@RequestParam(required = false) CourseFilter filter,
+                                                   @PageableDefault Pageable pageable){
+        return courseService.getFilteredCourses(filter, pageable);
     }
 
     @DeleteMapping("/{courseId}")

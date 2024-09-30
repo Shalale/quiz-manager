@@ -1,5 +1,6 @@
 package com.quizmanager.service.impl;
 
+import com.quizmanager.dto.CourseFilter;
 import com.quizmanager.dto.CourseRequest;
 import com.quizmanager.dto.CourseResponse;
 import com.quizmanager.dto.CourseUpdateRequest;
@@ -8,6 +9,8 @@ import com.quizmanager.entity.Course;
 import com.quizmanager.repository.AcademyRepository;
 import com.quizmanager.repository.CourseRepository;
 import com.quizmanager.service.CourseService;
+import com.quizmanager.specification.CourseSearchSpecification;
+import com.quizmanager.specification.CourseFilterSpecification;
 import com.quizmanager.utill.RepositoryUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -31,6 +34,7 @@ public class CourseServiceImpl implements CourseService {
         Course course = mapper.map(request, Course.class);
         course.setId(null);
         Course savedCourse = courseRepository.save(course);
+
         return mapper.map(savedCourse, CourseResponse.class);
     }
 
@@ -52,21 +56,28 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void delete(Long courseId) {
         RepositoryUtil.fetchById(courseRepository, courseId, "Course");
+
         courseRepository.deleteById(courseId);
     }
 
     @Override
     public CourseResponse getCourseById(Long courseId) {
         Course course = RepositoryUtil.fetchById(courseRepository, courseId, "Course");
+
         return mapper.map(course, CourseResponse.class);
     }
 
     @Override
-    public Page<CourseResponse> getAllCourses(Pageable pageable) {
-        Page<Course> coursePage = courseRepository.findAll(pageable);
+    public Page<CourseResponse> searchCourses(String searchText, Pageable pageable) {
+        Page<Course> coursePage = courseRepository.findAll(CourseSearchSpecification.searchCourse(searchText), pageable);
 
         return coursePage.map(course -> mapper.map(course, CourseResponse.class));
     }
 
+    @Override
+    public Page<CourseResponse> getFilteredCourses(CourseFilter filter, Pageable pageable) {
+        Page<Course> coursePage = courseRepository.findAll(CourseFilterSpecification.filterBy(filter), pageable);
 
+        return coursePage.map(course -> mapper.map(course, CourseResponse.class));
+    }
 }

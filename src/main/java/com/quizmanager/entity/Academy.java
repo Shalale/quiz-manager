@@ -26,7 +26,7 @@ public class Academy {
     @OneToMany(mappedBy = "academy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     Set<Course> courses;
-
+//@todo add createdAt to all entities
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

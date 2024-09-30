@@ -1,5 +1,6 @@
 package com.quizmanager.service;
 
+import com.quizmanager.dto.CourseFilter;
 import com.quizmanager.dto.CourseRequest;
 import com.quizmanager.dto.CourseResponse;
 import com.quizmanager.dto.CourseUpdateRequest;
@@ -15,5 +16,7 @@ public interface CourseService {
 
     CourseResponse getCourseById(Long courseId);
 
-    Page<CourseResponse> getAllCourses(Pageable pageable);
+    Page<CourseResponse> searchCourses(String searchTerm, Pageable pageable);
+
+     Page<CourseResponse> getFilteredCourses(CourseFilter filter, Pageable pageable);
 }
