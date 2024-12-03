@@ -7,4 +7,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class CourseUpdateRequest extends CourseRequest {
     private Long id;
+    String name;
+    String instructor;
+    Long academyId;
 }

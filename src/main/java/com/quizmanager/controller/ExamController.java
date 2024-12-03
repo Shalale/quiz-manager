@@ -29,12 +29,12 @@ public class ExamController {
         return examService.getExamById(id);
     }
 
-    @GetMapping()//@Todo: Add search functionality
+    @GetMapping()
     public Page<ExamResponse> getAll(@PageableDefault() Pageable pageable) {
         return examService.getAll(pageable);
     }
 
-    @GetMapping("/course/{id}")
+    @GetMapping("/course/{id}")//@Todo: Add search functionality
     public Page<ExamResponse> getAllByCourse(@PathVariable Long id, @PageableDefault() Pageable pageable) {
         return examService.getAllByCourse(id, pageable);
     }

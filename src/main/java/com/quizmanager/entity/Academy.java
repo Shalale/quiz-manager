@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,7 +28,12 @@ public class Academy {
     @OneToMany(mappedBy = "academy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     Set<Course> courses;
-//@todo add createdAt to all entities
+
+    @Column(updatable = false)
+    @CreationTimestamp
+    LocalDateTime createdAt;
+
+    //@todo add createdAt to all entities
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
