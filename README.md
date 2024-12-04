@@ -22,5 +22,5 @@
 - **Frontend**: Vue.js
 - **Database**: PostgreSQL
 - **Containerization**: Docker
-- **Build Tool**: Maven or Gradle
-- **Email Service**: SMTP (optional)
+- **Build Tool**: Gradle
+- **Email Service**: Kafka
