@@ -1,4 +1,4 @@
-package com.quizmanager.utill;
+package com.quizmanager.non_optimal_codes;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;

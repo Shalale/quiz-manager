@@ -10,7 +10,7 @@ import com.quizmanager.repository.AcademyRepository;
 import com.quizmanager.repository.CourseRepository;
 import com.quizmanager.service.CourseService;
 import com.quizmanager.specification.CourseSearchSpecification;
-import com.quizmanager.specification.CourseFilterSpecification;
+import com.quizmanager.non_optimal_codes.CourseFilterSpecification;
 import com.quizmanager.utill.RepositoryUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

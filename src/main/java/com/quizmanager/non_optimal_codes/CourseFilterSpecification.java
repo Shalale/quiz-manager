@@ -1,8 +1,8 @@
-package com.quizmanager.specification;
+package com.quizmanager.non_optimal_codes;
 
 import com.quizmanager.dto.CourseFilter;
 import com.quizmanager.entity.Course;
-import com.quizmanager.utill.FilterUtils;
+import com.quizmanager.non_optimal_codes.FilterUtils;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import java.util.ArrayList;
